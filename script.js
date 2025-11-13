@@ -28,23 +28,6 @@ function getCookies(name)
     ?.split("=")[1] || null;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * Initializes the Trivia Game when the DOM is fully loaded.
  */
