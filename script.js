@@ -36,8 +36,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionContainer = document.getElementById("question-container");
     const newPlayerButton = document.getElementById("new-player");
 
+    // User Check function
+    function checkUsername() {
+        const usernameInput = document.getElementById("username");
+        const username = getCookie("username");
+        const newPlayerButton = document.getElementById("new-player");
+
+        if (username) {
+            usernameInput.value = username;
+            usernameInput.style.display = "none";
+            newPlayerButton.style.display = "block";
+            console.log(`Welcome back, ${username}!`);
+        }
+        else {
+            usernameInput.style.display = "block"
+            newPlayerButton.style.display = "none"
+        }
+
+        
+    }
+
     // Initialize the game
-    // checkUsername(); Uncomment once completed
+    checkUsername();
     fetchQuestions();
     displayScores();
 
