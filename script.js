@@ -161,5 +161,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(`new user: ${username}`);
         }
         checkUsername();
+
+        // calculating the score
+        const score = calculateScore();
+        console.log(`${username} final score is: ${score}`);
     }
 });
