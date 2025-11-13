@@ -1,3 +1,42 @@
+function setCookies(name, value, days)
+{
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+
+    document.cookie = name + "=" + value + "; path=/";
+    console.log("Cookies set:", document.cookie);
+}
+
+/* function getCookies(name)
+{
+    // return the cookie in String
+
+    return document.cookie
+    // divide the string at ;
+    .split("; ")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Initializes the Trivia Game when the DOM is fully loaded.
  */
