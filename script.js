@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkUsername() {
         const usernameInput = document.getElementById("username");
         const username = getCookie("username");
-        const newPlayerButton = document.getElementById("new-player");
 
         if (username) {
             usernameInput.value = username;
@@ -140,6 +139,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .join("");
     }
 
+    // score calculation
+    function calculateScore() {
+        let score = 0;
+    }
+
     // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
@@ -165,5 +169,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // calculating the score
         const score = calculateScore();
         console.log(`${username} final score is: ${score}`);
+
+        // save and display score
+        saveScore(username, score);
+        displayScores();
     }
 });
