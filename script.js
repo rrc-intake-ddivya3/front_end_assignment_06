@@ -1,4 +1,9 @@
-function setCookies(name, value, days)
+
+/*
+    Stores and retrive the cookies for the user session
+*/
+
+function setCookie(name, value, days)
 {
     let expires = "";
     if (days) {
@@ -11,13 +16,16 @@ function setCookies(name, value, days)
     console.log("Cookies set:", document.cookie);
 }
 
-/* function getCookies(name)
+function getCookies(name)
 {
     // return the cookie in String
 
     return document.cookie
     // divide the string at ;
     .split("; ")
+    .find((row) => row.startsWith(`${name}=`))
+
+    ?.split("=")[1] || null;
 }
 
 
