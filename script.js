@@ -16,7 +16,7 @@ function setCookie(name, value, days)
     console.log("Cookies set:", document.cookie);
 }
 
-function getCookies(name)
+function getCookie(name)
 {
     // return the cookie in String
 
@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
             usernameInput.style.display = "block"
             newPlayerButton.style.display = "none"
         }
-
-        
     }
 
     // Initialize the game
@@ -153,5 +151,15 @@ document.addEventListener("DOMContentLoaded", function () {
     function handleFormSubmit(event) {
         event.preventDefault();
         //... form submission logic including setting cookies and calculating score
+
+        const usernameInput = document.getElementById("username");
+        let username = usernameInput.Vlaue.trim();
+
+        // if it's new user
+        if(!getCookie("username") && username !==) {
+            setCookie("username", username, 7);
+            console.log(`new user: ${username}`);
+        }
+        checkUsername();
     }
 });
