@@ -1,3 +1,33 @@
+
+/*
+    Stores and retrive the cookies for the user session
+*/
+
+function setCookie(name, value, days)
+{
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+
+    document.cookie = name + "=" + value + "; path=/";
+    console.log("Cookies set:", document.cookie);
+}
+
+function getCookie(name)
+{
+    // return the cookie in String
+
+    return document.cookie
+    // divide the string at ;
+    .split("; ")
+    .find((row) => row.startsWith(`${name}=`))
+
+    ?.split("=")[1] || null;
+}
+
 /**
  * Initializes the Trivia Game when the DOM is fully loaded.
  */
@@ -6,8 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionContainer = document.getElementById("question-container");
     const newPlayerButton = document.getElementById("new-player");
 
+    // User Check function
+    function checkUsername() {
+        const usernameInput = document.getElementById("username");
+        const username = getCookie("username");
+
+        if (username) {
+            usernameInput.value = username;
+            usernameInput.style.display = "none";
+            newPlayerButton.style.display = "block";
+            console.log(`Welcome back, ${username}!`);
+        }
+        else {
+            usernameInput.style.display = "block"
+            newPlayerButton.style.display = "none"
+        }
+    }
+
     // Initialize the game
-    // checkUsername(); Uncomment once completed
+    checkUsername();
     fetchQuestions();
     displayScores();
 
@@ -92,6 +139,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .join("");
     }
 
+    // score calculation
+    function calculateScore() {
+        let score = 0;
+    }
+
     // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
@@ -103,5 +155,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function handleFormSubmit(event) {
         event.preventDefault();
         //... form submission logic including setting cookies and calculating score
+
+        const usernameInput = document.getElementById("username");
+        let username = usernameInput.Vlaue.trim();
+
+        // if it's new user
+        if(!getCookie("username") && username !==) {
+            setCookie("username", username, 7);
+            console.log(`new user: ${username}`);
+        }
+        checkUsername();
+
+        // calculating the score
+        const score = calculateScore();
+        console.log(`${username} final score is: ${score}`);
+
+        // save and display score
+        saveScore(username, score);
+        displayScores();
     }
 });
